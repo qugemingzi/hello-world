@@ -1,12 +1,14 @@
 #include <iostream>
+#include<vector>
+#include<algorithm>
 
 using namespace std;
 
 bool more(){
-    bool replay = false;
-    cout << "还要继续玩么？" << endl;
+    int replay = 0;
+    cout << "还要继续玩么？ 0表示不玩了" << endl;
     cin >> replay;
-    return replay;
+    return (replay == 0) ? false : true;
 }
 
 int main()
@@ -62,7 +64,7 @@ int main()
     cerr << "Sorry world!" << endl;
 
     for(int i = 0; i < 10; i++){
-        cout << rand() % 100 << endl;
+        cout << rand() % 14 << endl;
     }
 
     cout << "10 > 5\t\t" << (10 > 5) << endl;
@@ -130,6 +132,84 @@ int main()
         cin >> input;
         cout << "该数为奇数？" << ((input % 2) ? 'Y': 'N') << "\n";
     } while(more());
+
+    // array 2 vector
+    int iarr[] = {1, 2, 3, 4, 5};
+    vector<int> ivector(iarr + 1, iarr + 4);
+    for(int i = 0; i < ivector.size(); i++){
+        cout << ivector[i] << " ";
+    }cout << endl;
+
+    // vector 2 vector
+    vector<int> ivector1(5, 1);
+    vector<int> ivector2;// 定义一个空的vector
+
+    ivector2 = ivector1;
+
+    for(int i = 0; i < ivector2.size(); i++){
+        cout << ivector2[i] << " ";
+    }cout << endl;
+
+    ivector2[0] = 2;
+
+    for(int i = 0; i < ivector2.size(); i++){
+        cout << ivector2[i] << " ";
+    }cout << endl;
+
+    for(int i = 0; i < ivector1.size(); i++){
+        cout << ivector1[i] << " ";
+    }cout << endl;
+
+    // vector基本操作
+    // 赋值
+    for(int i = 90; i < 100; i++){
+        ivector.push_back(190 - i);
+    }
+
+    // iterator 遍历
+    for(vector<int>::iterator it = ivector.begin();
+        it != ivector.end();
+        it++){
+            cout << *it << " ";
+    }cout << endl;
+
+    cout << "capacity: " << ivector.capacity() << endl;
+    cout << "size: " << ivector.size() << endl;
+
+    // sort 排序
+    sort(ivector.begin(), ivector.end());
+
+    for(vector<int>::iterator it = ivector.begin();
+        it != ivector.end();
+        it++){
+            cout << *it << " ";
+    }cout << endl;
+
+    // find 搜索
+    int isearch = 0;
+    int bsearch = 1;
+    while(bsearch != 0){
+        cout << "请输入搜寻值：";
+        cin >> isearch;
+
+        vector<int>::iterator it = find(ivector.begin(), ivector.end(), isearch);
+        if(it != ivector.end()){
+            cout << "找到搜索值！" << endl;
+        }else{
+            cout << "找不到搜索值！" << endl;
+        }
+
+        cout << "还继续搜索么？ 0表示不搜索" << endl;
+        cin >> bsearch;
+    }
+
+    // reverse 翻转
+    reverse(ivector.begin(), ivector.end());
+    for(vector<int>::iterator it = ivector.begin();
+        it != ivector.end();
+        it++){
+            cout << *it << " ";
+    }cout << endl;
 
     return 0;
 }
