@@ -1,6 +1,9 @@
+
 #include <iostream>
 #include<vector>
 #include<algorithm>
+#include<cstring>
+#include<string>
 
 using namespace std;
 
@@ -210,6 +213,89 @@ int main()
         it++){
             cout << *it << " ";
     }cout << endl;
+
+    char cstr[] = "hello";
+
+    for(int i = 0; i < (sizeof(cstr)/sizeof(cstr[0])); i++) {
+        if(cstr[i] == '\0')
+            cout << "null";
+        else
+            cout << cstr[i] << " ";
+    }
+    cout << endl;
+
+    char cstr1[80] = {'\0'};
+    char cstr2[] = "caterpillar";
+
+    cout << "cstr1: " << cstr1 << endl
+         << "cstr2: " << cstr2 << endl
+         << endl;
+
+    // 将str2复制给str1
+    strcpy(cstr1, cstr2);
+    cout << "cstr1: " << cstr1 << endl
+         << "cstr2: " << cstr2 << endl
+         << endl;
+
+    // 将str2接在str1后
+    strcat(cstr1, cstr2);
+    cout << "cstr1: " << cstr1 << endl
+         << "cstr2: " << cstr2 << endl
+         << endl;
+
+    cout << "cstr1长度：" << strlen(cstr1) << endl
+         << "cstr2长度：" << strlen(cstr2) << endl
+         << endl;
+
+    cout << "cstr1与cstr2比较：" << strcmp(cstr1, cstr2) << endl
+         << endl;
+
+    string str1;
+    string str2("caterpillar");
+    string str3(str2);
+
+    if(str1.empty()){
+        cout << "str1 为空字串" << endl;
+    }
+
+    cout << "str1 长度: " << str1.size() << endl;
+    cout << "str2 长度: " << str2.size() << endl;
+    cout << "str3 长度: " << str3.size() << endl;
+
+    if(str1 == str2) {
+        cout << "str1 与 str2 內容相同" << endl;
+    }
+
+    if(str3 == str2) {
+        cout << "str3 与 str2 內容相同" << endl;
+    }
+
+    str1 = cstr1; // okay
+    cout << "str1: " << str1 << endl;
+//    cstr1 = str1 // error
+
+    // assign: 指定字串
+    str1 = str1.assign(str2, 0, 5);
+    cout << "str1: " << str1 << endl;
+    str1 = str1.assign("caterpillar", 5, 6);
+    cout << "str1: " << str1 << endl;
+
+    str1 = "";
+
+    // append: 字串串接
+    str1 = str1.append(str2, 0, 5);
+    str1 = str1.append(str3, 5, 6);
+    cout << "str1: " << str1 << endl;
+
+    // find: 寻找字串位置
+    cout << "寻找str1中的第一个pill: "
+         << str1.find("pill", 0) << endl;
+
+    // insert: 插入字串
+    cout << "在str1插入字串***: "
+         << str1.insert(5, "***") << endl;
+
+    cout << "str1长度: " << str1.length() << endl;
 
     return 0;
 }
