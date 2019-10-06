@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include<vector>
 #include<algorithm>
@@ -214,6 +213,7 @@ int main()
             cout << *it << " ";
     }cout << endl;
 
+    // cstring 使用
     char cstr[] = "hello";
 
     for(int i = 0; i < (sizeof(cstr)/sizeof(cstr[0])); i++) {
@@ -250,6 +250,7 @@ int main()
     cout << "cstr1与cstr2比较：" << strcmp(cstr1, cstr2) << endl
          << endl;
 
+    // string 应用
     string str1;
     string str2("caterpillar");
     string str3(str2);
@@ -297,5 +298,34 @@ int main()
 
     cout << "str1长度: " << str1.length() << endl;
 
+    // pointer
+    int var = 10;
+    int *iptr = &var;
+
+    cout << "变量var的值：" << var << endl;
+    cout << "变量var的位地址：" << &var << endl;
+    cout << "指针iptr指向的地址：" << iptr << endl;
+    cout << "取出iptr指向的地址的值：" << *iptr << endl;
+
+    *iptr = 20;
+
+    cout << "变量var的值：" << var << endl;
+    cout << "取出iptr指向的地址的值：" << *iptr << endl;
+
+    void *vptr = &var;
+
+    // 下面语句会报错，void类型指针不可取值
+    // cout << *vptr << endl;
+
+    // 转型为int类型指针并指定给另个指针iptr
+    iptr = reinterpret_cast<int*>(vptr);
+    cout << "取出iptr指向的地址的值：" << *iptr << endl;
+
+    // const声明的变量一旦被指定就不可改变
+    // const声明的变量必须使用对应的const类型指针，同样指针值不可改变
+    // const指针也不可以赋值新的位置
+
+
     return 0;
 }
+
