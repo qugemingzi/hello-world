@@ -325,6 +325,18 @@ int main()
     // const声明的变量必须使用对应的const类型指针，同样指针值不可改变
     // const指针也不可以赋值新的位置
 
+    // 指针运算
+    int *ipt = 0;
+    cout << "ipt位置：" << ipt << endl;
+    cout << "ipt + 1：" << ipt+1 << endl;
+    cout << "ipt + 2：" << ipt+2 << endl;
+
+    double *dpt = 0;
+    cout << "dpt位置：" << dpt << endl;
+    cout << "dpt + 1：" << dpt+1 << endl;
+    cout << "dpt + 2：" << dpt+2 << endl;
+
+
 
     return 0;
 }
