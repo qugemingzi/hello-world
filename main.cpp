@@ -336,7 +336,30 @@ int main()
     cout << "dpt + 1：" << dpt+1 << endl;
     cout << "dpt + 2：" << dpt+2 << endl;
 
+    // pointer & array
+    const int length = 5;
+    int arr[length] = {10, 20, 30, 40, 50};
+    int *aptr = arr;
 
+    cout << "arr: \t\t" << arr << endl;
+    cout << "&arr[0]: \t" << &arr[0] <<endl;
+
+    for(int i = 0; i < length; i++){
+        cout << "&arr[" << i << "]: " << &arr[i];
+        cout << "\taptr+" << i << ": " << aptr+i << endl;
+    }cout << endl;
+
+    // pointer以指针和阵列存取资料
+    for(int i = 0; i < length; i++){
+        cout << "*(aptr+" << i << "): " << *(aptr+i);
+        cout << "\taptr[" << i << "]: " << aptr[i] << endl;
+    }cout << endl;
+
+    // array以指针和数组存取资料
+    for(int i = 0; i < length; i++){
+        cout << "*(arr+" << i << "): " << *(arr+i);
+        cout << "\tarr[" << i << "]: " << arr[i] << endl;
+    }cout << endl;
 
     return 0;
 }
