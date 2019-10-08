@@ -321,6 +321,9 @@ int main()
     iptr = reinterpret_cast<int*>(vptr);
     cout << "取出iptr指向的地址的值：" << *iptr << endl;
 
+    delete iptr;
+    delete vptr;
+
     // const声明的变量一旦被指定就不可改变
     // const声明的变量必须使用对应的const类型指针，同样指针值不可改变
     // const指针也不可以赋值新的位置
@@ -331,10 +334,14 @@ int main()
     cout << "ipt + 1：" << ipt+1 << endl;
     cout << "ipt + 2：" << ipt+2 << endl;
 
+    delete ipt;
+
     double *dpt = 0;
     cout << "dpt位置：" << dpt << endl;
     cout << "dpt + 1：" << dpt+1 << endl;
     cout << "dpt + 2：" << dpt+2 << endl;
+
+    delete dpt;
 
     // pointer & array
     const int length = 5;
@@ -349,17 +356,78 @@ int main()
         cout << "\taptr+" << i << ": " << aptr+i << endl;
     }cout << endl;
 
-    // pointer以指针和阵列存取资料
+    // pointer 以指针和阵列存取资料
     for(int i = 0; i < length; i++){
         cout << "*(aptr+" << i << "): " << *(aptr+i);
         cout << "\taptr[" << i << "]: " << aptr[i] << endl;
     }cout << endl;
 
-    // array以指针和数组存取资料
+    delete [] aptr;
+
+    // array 以指针和数组存取资料
     for(int i = 0; i < length; i++){
         cout << "*(arr+" << i << "): " << *(arr+i);
         cout << "\tarr[" << i << "]: " << arr[i] << endl;
     }cout << endl;
+
+    // pointer's new & delete
+    int *niptr = new int(100);
+
+    cout << "空间位置：" << niptr << endl;
+    cout << "空间储存值：" << *niptr << endl;
+
+    *niptr = 200;
+
+    cout << "空间位置：" << niptr << endl;
+    cout << "空间储存值：" << *niptr << endl;
+
+    delete niptr;
+
+    // array's pointer new & delete
+    int size = 0;
+
+    cout << "请输入阵列长度：";
+    cin >> size;
+    int *arptr = new int[size];
+
+    cout << "指定元素值：" << endl;
+    for(int i = 0;i < size; i++){
+        cout << "arr[" << i << "] = ";
+        cin >> *(arptr+i);
+    }
+
+    cout << "显示元素值：" << endl;
+    for(int i = 0; i < size; i++){
+        cout << "arr[" << i << "] = " << *(arptr+i) << endl;
+    }
+
+    delete [] arptr;
+
+    // 2 dimension array's pointer new & delete
+    int row = 0;
+    int col = 0;
+
+    cout << "输入二维数组维度：";
+    cin >> row >> col;
+
+    int *twoarptr = new int[row*col];
+
+    for(int i = 0; i < row; i++){
+        for(int j = 0; j < col; j++){
+            if((i+j) >= row)
+                *(twoarptr + col*i + j) = (row+col-2) - (i+j);
+            else
+                *(twoarptr + col*i + j) = i + j;
+        }
+    }
+
+    for(int i = 0; i < row; i++){
+        for(int j = 0; j < col; j++){
+                cout << *(twoarptr+col*i+j) << "\t";
+        }cout << endl;
+    }
+
+    delete [] twoarptr;
 
     return 0;
 }
