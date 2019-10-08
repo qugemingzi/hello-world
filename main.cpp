@@ -362,13 +362,13 @@ int main()
         cout << "\taptr[" << i << "]: " << aptr[i] << endl;
     }cout << endl;
 
-    delete [] aptr;
-
     // array 以指针和数组存取资料
     for(int i = 0; i < length; i++){
         cout << "*(arr+" << i << "): " << *(arr+i);
         cout << "\tarr[" << i << "]: " << arr[i] << endl;
     }cout << endl;
+
+    delete [] aptr;
 
     // pointer's new & delete
     int *niptr = new int(100);
@@ -428,6 +428,29 @@ int main()
     }
 
     delete [] twoarptr;
+
+    // pointer's pointer
+    int p = 10;
+    int *ptr1 = &p;
+    int **ptr2 = &ptr1;
+
+    cout << "p的值：" << p << endl;
+    cout << "p的记忆体位址：" << &p << endl << endl;
+
+    cout << "*ptr1 = " << *ptr1 << endl;
+    cout << "ptr1 = " << ptr1 << endl;
+    cout << "ptr1的记忆体位置：" << &ptr1 << endl << endl;
+
+    cout << "**ptr2 = " << **ptr2 << endl;
+    cout << "*ptr2 = " << *ptr2 << endl;
+    cout << "ptr2 = " << ptr2 << endl << endl;
+
+    cout << "整理（谁储存了谁？）：" << endl;
+    cout << "&p = " << &p << "\t\t" << "ptr1 = " << ptr1 << endl;
+    cout << "&ptr1 = " << &ptr1 << "\t" << "ptr2 = " << ptr2 << endl;
+
+    delete ptr2, ptr1;
+
 
     return 0;
 }
