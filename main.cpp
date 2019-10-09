@@ -368,7 +368,7 @@ int main()
         cout << "\tarr[" << i << "]: " << arr[i] << endl;
     }cout << endl;
 
-    delete [] aptr;
+//    delete [] aptr;
 
     // pointer's new & delete
     int *niptr = new int(100);
@@ -429,7 +429,7 @@ int main()
 
     delete [] twoarptr;
 
-    // pointer's pointer
+    // pointer's pointer牵丝
     int p = 10;
     int *ptr1 = &p;
     int **ptr2 = &ptr1;
@@ -447,9 +447,74 @@ int main()
 
     cout << "整理（谁储存了谁？）：" << endl;
     cout << "&p = " << &p << "\t\t" << "ptr1 = " << ptr1 << endl;
-    cout << "&ptr1 = " << &ptr1 << "\t" << "ptr2 = " << ptr2 << endl;
+    cout << "&ptr1 = " << &ptr1 << "\t" << "ptr2 = " << ptr2 << endl << endl;
 
     delete ptr2, ptr1;
+
+    // pointer & string
+    char *strptr = "hello";
+    void *add = 0;
+
+    add = strptr;
+    cout << strptr << "\t" << add << endl;
+
+    strptr = "world";
+    add = strptr;
+    cout << strptr << "\t" << add << endl;
+
+    delete add, strptr;
+
+    // pointer's array
+    char *strarrptr[] = {"professor", "teacher", "student", "etc."};
+
+    for(int i = 0; i < 4; i++){
+        cout << strarrptr[i] << endl;
+    }
+
+    delete [] strarrptr;
+
+    // 2dimension pointer's array
+    char *strtarrptr[][2] = {"professor", "Justin", "teacher", "Momor",
+                            "student", "Caterpillar"};
+
+    for(int i = 0; i < 3; i++){
+        cout << strtarrptr[i][0] << ": " << strtarrptr[i][1] << endl;
+    }
+
+    delete [] strtarrptr;
+
+    /*
+        char *str1[] = {"professor", "Justin", "etc."};
+        char str2[3][10] = {"professor", "Justin", "etc."};
+        二者不同，第一个是指针阵列，每一个指针指向一个字符串，只要另外指定
+        字符串赋值给某个指针，则该指针指向的位址就不同了。
+        第二个是连续3x10字阵列空间，字符串直接储存这个空间，每个字符串的
+        位址固定，空间也固定。
+    */
+
+    // reference 表示变量的一个别名(Alias)，参考型态可以直接取得变量的位址
+    // 并间接通过参考型态来操作变量，作用类似于指针，但却不必使用指针语法。
+
+    int iref = 10;
+    // 参考型态必须初始化，因为初始化之后就不能改变它所代表的变量。
+    int &ref = iref;
+
+    cout << "iref: " << iref << endl;
+    cout << "ref: " << ref << endl;
+
+    ref = 20;// 常量不可以定址，其实为改变iref值
+    // const int &ref = iref 的话不可重新指定值给ref
+
+    cout << "iref: " << iref << endl;
+    cout << "ref: " << ref << endl;
+
+    /*
+        指针型的参考新建
+        int var = 10;
+        int *ptr = &var;
+        int *&ref = ptr;
+        后面函数介绍传参考(pass by reference)
+    */
 
 
     return 0;
