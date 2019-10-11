@@ -3,6 +3,7 @@
 #include<algorithm>
 #include<cstring>
 #include<string>
+#include "math.h"
 
 using namespace std;
 
@@ -12,6 +13,34 @@ bool more(){
     cin >> replay;
     return (replay == 0) ? false : true;
 }
+
+// 转移到math.h和math.cpp文件中了
+//int pow2(int num){
+//    return num*num;
+//}
+//
+//int pow(int num, int p){
+//    int r = 1;
+//    for(int i = 0; i < p; i++)
+//        r *= num;
+//    return r;
+//}
+
+double area(double r, double pi = 3.14){
+    return r*r*pi;
+}
+
+/*
+    多个预设参数时，预设参数右边必须预设参数，注意参数顺序
+    e.g.
+    TRUE: double volumn(double l, double w = 1.0, double h = 1.0);
+    FALSE: double volumn(double h = 1.0, double w = 1.0, double l);
+    函数中有多个预设参数时，调用时需要注意，预设参数是以参数顺序进行的
+    e.g.
+    bool setScreen(int width = 80, int height = 24, char bkcolor = '');
+    如果我们调用setScreen('R');则相当于setScreen('R', 24, '');
+    而不是setScreen(80, 24, 'R');且setScreen(,,'R')是错误的。
+*/
 
 int main()
 {
@@ -516,6 +545,26 @@ int main()
         后面函数介绍传参考(pass by reference)
     */
 
+    // function
+    int fnum = 0;
+    int fpower = 0;
+
+    cout << "输入数值：";
+    cin >> fnum;
+    cout << "输入平方：";
+    cin >> fpower;
+
+    cout << fnum << " 平方：" << pow2(fnum) << endl;
+    cout << fnum << " 的" << fpower << "次方：" << pow(fnum, fpower) << endl;
+
+    // 预设参数
+    double r, pi;
+
+    cout << "输入半径与PI:";
+    cin >> r >> pi;
+
+    cout << "面积(自定PI): " << area(r, pi) << endl;
+    cout << "面积(default); " << area(r) << endl;
 
     return 0;
 }
