@@ -54,6 +54,13 @@ void showpara(double x){
     cout << "double 参数：" << x << endl;
 }
 
+void count(){
+    static int c = 1;
+    int d = 1;
+    cout << c << "\t" << d << endl;
+    c++; d++;
+}
+
 int main()
 {
     cout << "Hello world!" << endl;
@@ -578,9 +585,28 @@ int main()
     cout << "面积(自定PI): " << area(r, pi) << endl;
     cout << "面积(default); " << area(r) << endl;
 
+    // 重载
     showpara(10);
     showpara(20, 30);
     showpara(10.0);
+
+    // 变量可视范围
+    i = 100;
+    for(int i = 0;i < 10; i++){
+        // static参数一旦生成，会一直存在于记忆体中
+        count();
+    }
+    // 这里的i随着for循环结束重新赋值为100
+    cout << i << endl;
+
+    /*
+        extern声明参数在其他的位置被定义，可能是在同一个文件中，也可能在其他文件中
+        FALSE:
+        extern double someVar = 2000; // error, 'someVar' has both 'extern' and initializer
+        TRUE:
+        extern double someVar;
+        someVar = 2000;
+    */
 
     return 0;
 }
