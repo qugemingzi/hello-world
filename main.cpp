@@ -42,6 +42,18 @@ double area(double r, double pi = 3.14){
     而不是setScreen(80, 24, 'R');且setScreen(,,'R')是错误的。
 */
 
+void showpara(int x){
+    cout << "int 参数：" << x << endl;
+}
+
+void showpara(int x, int y){
+    cout << "int 参数：" << x << "\t" << y << endl;
+}
+
+void showpara(double x){
+    cout << "double 参数：" << x << endl;
+}
+
 int main()
 {
     cout << "Hello world!" << endl;
@@ -350,8 +362,8 @@ int main()
     iptr = reinterpret_cast<int*>(vptr);
     cout << "取出iptr指向的地址的值：" << *iptr << endl;
 
-    delete iptr;
-    delete vptr;
+//    delete vptr;
+//    delete iptr;
 
     // const声明的变量一旦被指定就不可改变
     // const声明的变量必须使用对应的const类型指针，同样指针值不可改变
@@ -478,7 +490,7 @@ int main()
     cout << "&p = " << &p << "\t\t" << "ptr1 = " << ptr1 << endl;
     cout << "&ptr1 = " << &ptr1 << "\t" << "ptr2 = " << ptr2 << endl << endl;
 
-    delete ptr2, ptr1;
+//    delete ptr2, ptr1;
 
     // pointer & string
     char *strptr = "hello";
@@ -500,7 +512,7 @@ int main()
         cout << strarrptr[i] << endl;
     }
 
-    delete [] strarrptr;
+//    delete [] strarrptr;
 
     // 2dimension pointer's array
     char *strtarrptr[][2] = {"professor", "Justin", "teacher", "Momor",
@@ -510,7 +522,7 @@ int main()
         cout << strtarrptr[i][0] << ": " << strtarrptr[i][1] << endl;
     }
 
-    delete [] strtarrptr;
+//    delete [] strtarrptr;
 
     /*
         char *str1[] = {"professor", "Justin", "etc."};
@@ -565,6 +577,10 @@ int main()
 
     cout << "面积(自定PI): " << area(r, pi) << endl;
     cout << "面积(default); " << area(r) << endl;
+
+    showpara(10);
+    showpara(20, 30);
+    showpara(10.0);
 
     return 0;
 }
