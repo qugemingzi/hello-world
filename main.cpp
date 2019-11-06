@@ -61,6 +61,34 @@ void count(){
     c++; d++;
 }
 
+int gcd_r(int m, int n){
+    if(n == 0)
+        return m;
+    else
+        return gcd_r(n, m % n);
+}
+
+int gcd(int m, int n){
+    int r = 0;
+    while(n != 0){
+        r = m % n;
+        m = n;
+        n = r;
+    }
+    return m;
+}
+
+// 传值
+int increment(int n){
+    return ++n;
+}
+
+// 传引用
+int increment(int *n){
+    return ++*n;
+}
+
+
 int main()
 {
     cout << "Hello world!" << endl;
@@ -607,6 +635,26 @@ int main()
         extern double someVar;
         someVar = 2000;
     */
+
+    // 递归Recursion
+    int gcd_m = 0;
+    int gcd_n = 0;
+
+    cout << "输入两数求最大公约数：";
+    cin >> gcd_m >> gcd_n;
+
+    cout << "GCD using Recursion: "
+         << gcd_r(gcd_m, gcd_n) << endl;
+    cout << "GCD without Recursion: "
+         << gcd(gcd_m, gcd_n) << endl;
+
+    // 传值还是传引用
+    int x = 10;
+
+    cout << increment(x) << endl;
+    cout << x << endl;
+    cout << increment(&x) << endl;
+    cout << x << endl;
 
     return 0;
 }
