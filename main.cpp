@@ -118,6 +118,18 @@ string& foo1(){
     return *s;
 }
 
+void vla(int i, ...){
+    double temp;
+    va_list num_list;
+
+    va_start(num_list, i);
+
+    for(int j = 0; j < i; j++)
+        cout << va_arg(num_list, double) << endl;
+
+    va_end(num_list);
+}
+
 
 int main()
 {
@@ -716,6 +728,13 @@ int main()
     delete &return_str1;
 
     // 不定长度参数
+    double vla_x = 1.1, vla_y = 2.2, vla_z = 3.3;
+    double vla_a = 0.1, vla_b = 0.2, vla_c = 0.3;
+
+    cout << "三个参数：" << endl;
+    vla(3, vla_x, vla_y, vla_z);
+    cout << "六个参数：" << endl;
+    vla(6, vla_x, vla_y, vla_z, vla_a, vla_b, vla_c);
 
     return 0;
 }
