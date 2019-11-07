@@ -4,6 +4,7 @@
 #include<cstring>
 #include<string>
 #include "math.h"
+#include<cstdarg>
 
 using namespace std;
 
@@ -86,6 +87,35 @@ int increment(int n){
 // 传引用
 int increment(int *n){
     return ++*n;
+}
+
+
+// 传回建立的阵列地址
+int* createArray(int m){
+    int *a = new int[m];
+    for(int i = 0; i < m; i++){
+        a[i] = 0;
+    }
+
+    return a;
+}
+
+void deleteArray(int * arr){
+    delete [] arr;
+}
+
+string foo(){
+    string s = "This is pray chow speaking.";
+    cout << "address: " << &s << endl << s << endl;
+
+    return s;
+}
+
+string& foo1(){
+    string *s = new string("This is pray chow speaking.");
+    cout << "address: " << s << endl << *s << endl;
+
+    return *s;
 }
 
 
@@ -655,6 +685,37 @@ int main()
     cout << x << endl;
     cout << increment(&x) << endl;
     cout << x << endl;
+
+    // return 的传值、传参考
+    int return_m = 0;
+    cout  << "阵列大小：";
+    cin >> return_m;
+
+    int *return_arr = createArray(return_m);
+    for(int i = 0; i < return_m; i++){
+        return_arr[i] = i;
+    }
+
+    for(int i = 0; i < return_m; i++){
+        cout << "arr[" << i << "] = " << return_arr[i] << endl;
+    }
+    deleteArray(return_arr);
+
+    // return 传物件，字符串
+    string return_str = foo();// 声明return_str时接收返回值，指向同一个地址
+
+    cout << "address: " << &return_str << endl << return_str << endl;
+
+    return_str = foo();// 指定新字符串，会复制一份
+
+    cout << "address: " << &return_str << endl << return_str << endl;
+
+    string &return_str1 = foo1();
+
+    cout << "address: " << &return_str1 << endl << return_str1 << endl;
+    delete &return_str1;
+
+    // 不定长度参数
 
     return 0;
 }
