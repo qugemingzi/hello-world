@@ -5,6 +5,7 @@
 #include<string>
 #include "math.h"
 #include<cstdarg>
+#include "sort.h"
 
 using namespace std;
 
@@ -128,6 +129,24 @@ void vla(int i, ...){
         cout << va_arg(num_list, double) << endl;
 
     va_end(num_list);
+}
+
+int ptr_foo(){
+    cout << "function point" << endl;
+
+    return 0;
+}
+
+int ptr_foo(int n1, int n2){
+    cout << "ptr_foo(int, int): " << n1 << "\t" << n2 << endl;
+
+    return 0;
+}
+
+int ptr_foo(int n, char c){
+    cout << "ptr_foo(int, char): " << n << "\t" << c << endl;
+
+    return 0;
 }
 
 
@@ -735,6 +754,44 @@ int main()
     vla(3, vla_x, vla_y, vla_z);
     cout << "六个参数：" << endl;
     vla(6, vla_x, vla_y, vla_z, vla_a, vla_b, vla_c);
+
+    // function pointer
+    int (*ptr_fuc)() = 0;
+    ptr_fuc = ptr_foo;
+    ptr_foo();
+    ptr_fuc();
+
+    // cout << "address of ptr_foo: " << (int)ptr_foo << endl;
+    // 下面的与上面的地址相同
+    cout << "address of ptr_fuc: " << (int)ptr_fuc << endl;
+
+    int (*ptr_fuc1)(int, int) = 0;
+    int (*ptr_fuc2)(int, char) = 0;
+
+    ptr_fuc1 = ptr_foo; // get address of ptr_foo(int, int)
+    ptr_fuc2 = ptr_foo; // get address of ptr_foo(int, char)
+    ptr_fuc1(1, 2);
+    ptr_fuc2(3, 'c');
+
+    cout << "address of ptr_foo(int, int): " << (int)ptr_fuc1 << endl;
+    cout << "address of ptr_foo(int, char): " << (int)ptr_fuc2 << endl;
+
+    int number1[] = {3, 5, 1, 6, 9};
+    sort(number1, 5, larger);
+    cout << "大的在前 ";
+    for(int i = 0; i < 5; i++){
+        cout << number1[i] << " ";
+    }
+    cout << endl;
+
+    int number2[] = {3, 5, 1, 6, 9};
+    sort(number2, 5, smaller);
+    cout << "小的在前 ";
+    for(int i = 0; i < 5; i++){
+        cout << number2[i] << " ";
+    }
+    cout << endl;
+
 
     return 0;
 }
