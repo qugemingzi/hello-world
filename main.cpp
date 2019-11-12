@@ -7,6 +7,7 @@
 #include<cstdarg>
 #include "sort.h"
 #include "Ball.h"
+#include "SafeArray.h"
 
 using namespace std;
 
@@ -807,6 +808,16 @@ int main()
     string name("yellow ball");
     Ball ball3(10.0, name);
     cout << ball3.name() << "\t" << ball3.volumn() << endl;
+
+    // Constructor & Destructor
+    SafeArray safeArray(10);
+
+    for(int i = 0; i < safeArray.length; i++)
+        safeArray.set(i, (i+1)*10);
+    for(int i = 0; i < safeArray.length; i++)
+        cout << safeArray.get(i) << " ";
+    cout << endl;
+    cout << safeArray.get(-1) << " " << safeArray.get(10) << endl;
 
     return 0;
 }
