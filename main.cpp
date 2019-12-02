@@ -1,13 +1,14 @@
 #include <iostream>
-#include<vector>
-#include<algorithm>
-#include<cstring>
-#include<string>
+#include <vector>
+#include <algorithm>
+#include <cstring>
+#include <string>
 #include "math.h"
 #include<cstdarg>
 #include "sort.h"
 #include "Ball.h"
 #include "SafeArray.h"
+#include <memory>
 
 using namespace std;
 
@@ -818,6 +819,19 @@ int main()
         cout << safeArray.get(i) << " ";
     cout << endl;
     cout << safeArray.get(-1) << " " << safeArray.get(10) << endl;
+
+    // auto_ptr
+    auto_ptr<int> aiptr (new int(100));
+    auto_ptr<string> asptr (new string("caterpillar"));
+
+    cout << *aiptr << endl;
+    if(asptr->empty())
+        cout << "×Ö·û´®Îª¿Õ" << endl;
+    else
+        cout << *asptr << endl;
+
+    // const & mutable
+    // see in Ball.cpp
 
     return 0;
 }
