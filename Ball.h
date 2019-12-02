@@ -9,8 +9,8 @@ public:
     Ball(double, const char*);
     Ball(double, string&);
 
-    double radius();
-    string& name();
+    double radius() const;
+    const string& name() const;
 
     void radius(double);
     void name(const char*);
@@ -19,8 +19,8 @@ public:
     double volumn();
 
 private:
-    double _radius; // °ë¾¶
-    string _name; // Ãû³Æ
+    double _radius; // åŠå¾„
+    string _name; // åç§°
 };
 
 
