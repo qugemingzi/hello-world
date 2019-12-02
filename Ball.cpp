@@ -18,11 +18,11 @@ Ball::Ball(double radius, string &name){
     _name = name;
 }
 
-double Ball::radius(){
+double Ball::radius() const{
     return _radius;
 }
 
-string& Ball::name(){
+const string& Ball::name() const{
     return _name;
 }
 
@@ -36,6 +36,11 @@ void Ball::name(const char *name){
 
 void Ball::name(string &name){
     _name = name;
+}
+
+void somefun(const Ball &ball){
+    ball.radius();
+    ball.name();
 }
 
 double Ball::volumn(){
